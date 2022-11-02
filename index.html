@@ -9,9 +9,36 @@
 <body>
     <div id="game-panel">
         <div>
-            Rounds:
-            <input type="number">
+            <label>Rounds:</label>
+            <select id="round-input">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
         </div>
+        <div id="icon-selection">
+            <div id="player-one" class="player">
+                Player One:
+                <div id="player-one-icn" class="player-icon">
+                    X
+                </div>
+                <div id="player-one-cpu" class="ai-checkbox">
+                    Artificial Inteligence:
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div id="player-two" class="player">
+                Player Two:
+                <div  id="player-one-icn" class="player-icon">
+                    O
+                </div>
+                <div id="player-two-cpu" class="ai-checkbox">
+                    Artificial Inteligence:
+                    <input type="checkbox">
+                </div>
+            </div>
+        </div>
+
         <div id="links">
             <div>
                 <a href="">GitHub</a>

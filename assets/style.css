@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     border: none;
+    outline: none;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -21,8 +22,9 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 
-    width: 35%;
+    width: 50%;
     z-index: 0;
 
     border-radius: 5px 0px 0px 5px;
@@ -33,12 +35,62 @@ body{
 #game-panel > div {
     padding: 1rem;
 }
+#round-input{
+    font-size: 1rem;
+    background-color: white;
+    border-bottom: 1px solid grey;
+}
+label{
+    font-size: 1.5rem;
+}
+
+#icon-selection{
+    display: flex;
+    justify-content: row;
+    gap: 1rem;
+
+    justify-content: center;
+    align-items: center;
+}
+.player{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid grey;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.player-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+    font-size: 5rem;
+}
+.ai-checkbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    font-size: 0.6rem;
+
+    padding: 5px 1rem;
+    background-color: whitesmoke;
+}
 
 #links{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    box-sizing: border-box;
+    width: 100%;
 
     background-color: whitesmoke;
 }
@@ -69,7 +121,7 @@ a{
     position: relative;
     z-index: 2;
 
-    width: 55%;
+    width: 50%;
     height: 400px;
 
     padding: 1rem;
@@ -94,5 +146,7 @@ a{
 }
 
 .block{
+    font-size: 6rem;
+    text-align: center;
     outline: rgb(216, 215, 215) solid 1px;
 }
