@@ -16,27 +16,31 @@
                 <option value="15">15</option>
             </select>
         </div>
-        <div id="icon-selection">
-            <div id="player-one" class="player">
-                Player One:
-                <div id="player-one-icn" class="player-icon">
-                    X
+
+        <div id="gamepanel-container">
+            <div id="icon-selection">
+                <div id="player-one" class="player">
+                    Player One:
+                    <span id="player-one-icn" class="player-icon">
+                        X
+                    </span>
+                    <div id="player-one-cpu" class="ai-checkbox">
+                        Artificial Inteligence:
+                        <input type="checkbox">
+                    </div>
                 </div>
-                <div id="player-one-cpu" class="ai-checkbox">
-                    Artificial Inteligence:
-                    <input type="checkbox">
+                <div id="player-two" class="player">
+                    Player Two:
+                    <span id="player-two-icn" class="player-icon">
+                        o
+                    </span>
+                    <div id="player-two-cpu" class="ai-checkbox">
+                        Artificial Inteligence:
+                        <input type="checkbox">
+                    </div>
                 </div>
             </div>
-            <div id="player-two" class="player">
-                Player Two:
-                <div  id="player-one-icn" class="player-icon">
-                    O
-                </div>
-                <div id="player-two-cpu" class="ai-checkbox">
-                    Artificial Inteligence:
-                    <input type="checkbox">
-                </div>
-            </div>
+            <button id="start-btn">Start</button>
         </div>
 
         <div id="links">
@@ -49,10 +53,10 @@
             </div>
         </div>
     </div>
-    <div id="container">
+    <div id="scoreboard-container">
         <div id="scoreboard">0:0</div>
         <div id="field">
-            
+            <div id="message">Choose the icon for the players</div>
         </div>
     </div>
 </body>
