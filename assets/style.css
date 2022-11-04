@@ -145,11 +145,20 @@ a{
     background-color: white;
 }
 
-
+#display{
+    height: 10%;
+}
 #scoreboard{
     text-align: center;
     font-size: 2rem;
     color: black;
+}
+#round-display{
+    font-size: 0.8rem;
+
+}
+#current-player-display{
+    font-size: 0.9rem;
 }
 
 #field{
