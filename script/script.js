@@ -13,8 +13,16 @@ let game = (function(){
     let currentPlayer = playerOne
     let nextPlayer = playerTwo
 
+
+    const changeCurrentPlayerDisplay = function(){
+        let currentlayerDisplay = document.querySelector("#current-player-display")
+        currentlayerDisplay.textContent = `${currentPlayer}`
+    }
     const changeCurrentPlayer = function (){
         [this.currentPlayer, this.nextPlayer] = [this.nextPlayer, this.currentPlayer] 
+        changeCurrentPlayerDisplay()
+        _gameBoard.getFieldValues()
+        _gameBoard.checkField()
     }
 
     const startGame = () => {
@@ -38,6 +46,21 @@ let _gameBoard = (function(){
     let fieldValues = ["", "", "", 
     "", "", "", 
     "", "", "", ]
+
+    const checkField = function(){
+        if(this.fieldValues[0] == "x" && this.fieldValues[1] == "x" && this.fieldValues[2] == "x"){
+            console.log("win")
+        }
+    }
+
+    const getFieldValues = function(){
+        let blocks = document.querySelectorAll(".block")
+        this.fieldValues = []
+        blocks.forEach(block => {
+            this.fieldValues.push(block.textContent)
+        });
+    }
+
     
     let clearField = function (){
         field.textContent = " "
@@ -54,10 +77,8 @@ let _gameBoard = (function(){
             field.append(lol) 
         }
     })
-    
-    let blocks = document.querySelectorAll(".block")
  
-    return {clearField}
+    return {clearField, fieldValues, getFieldValues, checkField}
                 
     })()
 
