@@ -1,57 +1,80 @@
-const playerTwo = (function(){
-    //const getMarker = () =>{}
-    let marker = "o"
-    return {marker}
-})()
-const playerOne = (function(){
-    //const getMarker = () =>{}
-    let marker = "x"
-    return {marker}
-})()
+let Player = function(name, marker){
+    const playerName = name
+    const icon = marker
+    let binarySequence = ""
+
+    function setBinary(){
+        this.binarySequence = ""
+        
+        gameBoard.fieldValues.forEach(value => {
+            if(value == this.icon){
+                this.binarySequence += "1"
+            } else {
+                this.binarySequence += "0"
+            }
+        })
+    }
+
+    return {playerName, icon, setBinary, binarySequence}
+}
 
 let game = (function(){
-    let currentPlayer = playerOne
-    let nextPlayer = playerTwo
+    let currentPlayer = null
+    let nextPlayer = null
+    let victory = [448, 56, 7, 292, 146, 73, 273, 84]
 
+    const checkWonConditions = function(){
+        victory.forEach(number => {
+            let res = parseInt(game.currentPlayer.binarySequence, 2) & number
+            let winner = null
+
+            if(res == number){
+                console.log("boa")
+            }   
+        })
+    }
 
     const changeCurrentPlayerDisplay = function(){
-        let currentlayerDisplay = document.querySelector("#current-player-display")
-        currentlayerDisplay.textContent = `${currentPlayer}`
+        let currentPlayerDisplay = document.querySelector("#current-player-display")
+        currentPlayerDisplay.textContent = `${this.currentPlayer.playerName}`
+        console.log(currentPlayer.playerName, this.currentPlayer.playerName)
     }
     const changeCurrentPlayer = function (){
         [this.currentPlayer, this.nextPlayer] = [this.nextPlayer, this.currentPlayer] 
-        changeCurrentPlayerDisplay()
-        _gameBoard.getFieldValues()
-        _gameBoard.checkField()
+        // changeCurrentPlayerDisplay()
     }
 
-    const startGame = () => {
+    const startGame = function (){
         let rounds = document.querySelector("round-input")
-        _gameBoard.clearField()
+        this.currentPlayer = Player("player one", "x")
+        this.nextPlayer =  Player("player two", "o")
+
+        gameBoard.clearField()
+
     }
 
-    return {currentPlayer, nextPlayer, startGame, changeCurrentPlayer }
+    return {currentPlayer, nextPlayer, startGame, changeCurrentPlayer, checkWonConditions}
 })()
 
-let _gameBoard = (function(){
+let gameBoard = (function(){
     let field = document.querySelector("#field")
-    field.addEventListener("click", (e) =>{
+    field.addEventListener("click", function (e){
         if(e.target.textContent == ""){
-            e.target.textContent = game.currentPlayer.marker
+            e.target.textContent = game.currentPlayer.icon
+            gameBoard.getFieldValues()
+            game.currentPlayer.setBinary()
             game.changeCurrentPlayer()
         }
+        game.checkWonConditions()
     })
+
 
     let message = document.querySelector("#message")
     let fieldValues = ["", "", "", 
     "", "", "", 
     "", "", "", ]
 
-    const checkField = function(){
-        if(this.fieldValues[0] == "x" && this.fieldValues[1] == "x" && this.fieldValues[2] == "x"){
-            console.log("win")
-        }
-    }
+
 
     const getFieldValues = function(){
         let blocks = document.querySelectorAll(".block")
@@ -70,15 +93,16 @@ let _gameBoard = (function(){
     }
     
     const createBlock = (function() {
-        for(let block of fieldValues){
-            let lol = document.createElement("div")
-            lol.classList.add("block")
-            lol.textContent = block
-            field.append(lol) 
+        for(let value = 0; value < fieldValues.length; value++){
+            let block = document.createElement("div")
+            block.classList.add("block")
+            block.textContent = fieldValues[value]
+            block.setAttribute("value", value)
+            field.append(block) 
         }
     })
  
-    return {clearField, fieldValues, getFieldValues, checkField}
+    return {clearField, fieldValues, getFieldValues, }
                 
     })()
 
