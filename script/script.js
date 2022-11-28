@@ -1,7 +1,7 @@
 let Player = function(name, marker){
     const playerName = name
     const icon = marker
-    let binarySequence = ""
+    let binarySequence
 
     function setBinary(){
         this.binarySequence = ""
@@ -29,7 +29,7 @@ let game = (function(){
             let winner = null
 
             if(res == number){
-                console.log("boa")
+                console.log("boa " + game.currentPlayer.playerName)
             }   
         })
     }
@@ -63,9 +63,9 @@ let gameBoard = (function(){
             e.target.textContent = game.currentPlayer.icon
             gameBoard.getFieldValues()
             game.currentPlayer.setBinary()
+            game.checkWonConditions()
             game.changeCurrentPlayer()
         }
-        game.checkWonConditions()
     })
 
 
